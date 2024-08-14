@@ -8,3 +8,16 @@ vsc-extension-quickstart.md
 **/*.map
 **/.eslintrc.json
 **/.vscode-test.*
+
+# Exclude node_modules except for production dependencies
+node_modules/**
+
+# Exclude build scripts and configs
+scripts/
+.vscode/
+test/
+tsconfig.json
+
+# Exclude large or unnecessary files
+*.md
+*.log
