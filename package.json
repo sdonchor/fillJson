@@ -2,7 +2,7 @@
   "name": "filljson",
   "displayName": "FillJSON",
   "description": "An extension that assists in filling out JSON files with key and string value pairs by automatically adding quotes, colons, and moving the cursor.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "sdonchor",
   "repository": {
     "type": "git",
@@ -15,7 +15,6 @@
       "Other", "Formatters", "Snippets"
   ],
   "activationEvents": [
-      "onCommand:filljson.toggle",
       "onCommand:filljson.nextField"
   ],
   "main": "./extension.js",
@@ -30,7 +29,7 @@
           {
               "command": "filljson.nextField",
               "key": "tab",
-              "when": "jsonAutoQuotesEnabled == true"
+              "when": "jsonAssistEnabled == true"
           }
       ]
   },

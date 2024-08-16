@@ -1,23 +1,23 @@
 const vscode = require('vscode');
 
-let jsonAutoQuotesEnabled = false;
+let jsonAssistEnabled = false;
 
 function activate(context) {
     context.subscriptions.push(
-        vscode.commands.registerCommand('filljson.toggle', toggleAutoQuotes),
+        vscode.commands.registerCommand('filljson.toggle', toggleJsonAssist),
         vscode.commands.registerCommand('filljson.nextField', handleNextField)
     );
 }
 
-function toggleAutoQuotes() {
-    jsonAutoQuotesEnabled = !jsonAutoQuotesEnabled;
-    vscode.window.showInformationMessage(`FillJSON Auto-Quotes: ${jsonAutoQuotesEnabled ? 'Enabled' : 'Disabled'}`);
-    vscode.commands.executeCommand('setContext', 'jsonAutoQuotesEnabled', jsonAutoQuotesEnabled);
+function toggleJsonAssist() {
+    jsonAssistEnabled = !jsonAssistEnabled;
+    vscode.window.showInformationMessage(`FillJSON assist: ${jsonAssistEnabled ? 'enabled' : 'disabled'}`);
+    vscode.commands.executeCommand('setContext', 'jsonAssistEnabled', jsonAssistEnabled);
 }
 
 async function handleNextField() {
     const editor = getActiveEditor();
-    if (!editor || !jsonAutoQuotesEnabled) return;
+    if (!editor || !jsonAssistEnabled) return;
 
     const currentLine = getCurrentLine(editor);
 
@@ -60,7 +60,7 @@ function moveCursor(editor, offset) {
 async function handleMissingColon(editor) {
     moveCursorToEndOfLine(editor);
     await insertText(editor, ' : ""');
-    moveCursor(editor, -1); // Move cursor inside the quotes
+    moveCursor(editor, -1);
 }
 
 async function handleExistingColon(editor) {
